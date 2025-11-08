@@ -1,5 +1,6 @@
 package com.Spring.ProyectoJpaReservas.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,23 @@ public class Cliente {
 
     @Column(name = "Nombre")
     private String name;
+
+    @Column(name = "correo")
+    private String email;
+
+    @Column(name = "Contraseña")
+    private int password;
+
+    @Column(name = "foto")
+    private String picture;
+
+    @OneToMany(mappedBy = "Cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Reservas>  reservas;
+
+
+
+
 
 
 }
